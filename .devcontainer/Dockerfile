@@ -18,3 +18,5 @@ RUN source ~/.bashrc \
     && poetry config virtualenvs.in-project true
     # COPY . .
     # && poetry install
+
+RUN echo "source $HOME/.poetry/env" >> ~/.bashrc
