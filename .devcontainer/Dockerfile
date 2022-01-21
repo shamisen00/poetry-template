@@ -25,4 +25,4 @@ RUN source ~/.bashrc \
     # COPY . .
     # && poetry install
 
-RUN echo "source $HOME/.poetry/env" >> ~/.bashrc
+RUN echo "source /workspaces/demo/.venv/bin/activate" >> ~/.bashrc
