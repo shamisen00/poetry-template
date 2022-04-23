@@ -2,6 +2,9 @@
 
 poetry install
 
+# activate env
+poetry shell
+
 # activate pre-commit
 
-poetry run pre-commit install
+pre-commit install
