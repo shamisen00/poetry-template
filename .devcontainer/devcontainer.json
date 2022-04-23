@@ -5,7 +5,16 @@
 	"workspaceFolder": "/workspace",
 
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": ["ms-python.python"],
+	"extensions": ["ms-python.python",
+					"ms-toolsai.jupyter",
+					"eamodio.gitlens",
+					"mhutchie.git-graph",
+					"GitHub.copilot",
+					"gua.rainbow-brackets",
+					"MS-vsliveshare.vsliveshare-pack",
+					"yzhang.markdown-all-in-one",
+					"ms-vscode-remote.remote-containers",
+					"CodeStream.codestream"],
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "vscode",
