@@ -19,6 +19,3 @@ RUN source ~/.bashrc \
     && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
 
 #ENV PATH $PATH:/usr/.poetry/bin
-
-# entrypointはremote-containerで上書きされるらしい
-#ENTRYPOINT [ ".", "/usr/local/share/docker-init.sh" ]
