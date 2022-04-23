@@ -1,11 +1,7 @@
-# active pre-commit
-
-pre-commit install
-
 # create virtual env
 
 poetry install
 
-# use jupyterlab
+# activate pre-commit
 
-poetry run jupyter lab --allow-root
+poetry run pre-commit install
