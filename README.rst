@@ -2,6 +2,9 @@
 
 poetry install
 
+# enable poetry env on jupyter
+restart vscode
+
 # activate env
 poetry shell
 
