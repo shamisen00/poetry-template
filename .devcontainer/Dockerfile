@@ -1,21 +1,17 @@
-FROM ubuntu:20.04
+FROM python:3.9-buster
 
-SHELL ["/bin/bash", "-c"]
+ENV PYTHONUNBUFFERED=1
 
-# to avoid selecting timezone on installing packages.
-ENV DEBIAN_FRONTEND=noninteractive
+# pipを使ってpoetryをインストール
+RUN pip install poetry
 
-RUN apt update && apt install -y python3 \
-    python3-distutils \
-    git \
-    curl \
-    && rm -rf /var/lib/apt/lists
+# poetryの定義ファイルをコピー (存在する場合)
+COPY pyproject.toml* poetry.lock* ./
 
-RUN echo "alias python='python3' " >> ~/.bashrc
+# poetryでライブラリをインストール (pyproject.tomlが既にある場合)
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 - \
+    && poetry config virtualenvs.in-project true
 
-COPY .devcontainer/scripts/docker-init.sh /usr/local/share
+RUN if [ -f pyproject.toml ]; then poetry install; fi
 
-RUN source ~/.bashrc \
-    && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
 
-#ENV PATH $PATH:/usr/.poetry/bin
