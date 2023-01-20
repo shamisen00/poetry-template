@@ -7,13 +7,11 @@
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-python.python",
-		"ms-toolsai.jupyter",
 		"eamodio.gitlens",
 		"mhutchie.git-graph",
 		"GitHub.copilot",
 		"gencay.vscode-chatgpt",
 		"GitHub.copilot-labs",
-		"gua.rainbow-brackets",
 		"MS-vsliveshare.vsliveshare-pack",
 		"yzhang.markdown-all-in-one",
 		"ms-vscode-remote.remote-containers",
