@@ -16,6 +16,6 @@ RUN echo "alias python='python3' " >> ~/.bashrc
 COPY .devcontainer/scripts/docker-init.sh /usr/local/share
 
 RUN source ~/.bashrc \
-    && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
+    && curl -sSL https://install.python-poetry.org | python3 -
 
 #ENV PATH $PATH:/usr/.poetry/bin
