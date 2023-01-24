@@ -25,6 +25,7 @@
 				"GitHub.github-vscode-theme",
 				"Gruntfuggly.todo-tree",
 				"ZainChen.json",
+				"mikestead.dotenv",
 				"hediet.vscode-drawio"
 			]	
 		}
