@@ -1,32 +1,43 @@
-ARG python_image_v="python:3.10-buster"
+ARG ubuntu_version="20.04"
 
-FROM ${python_image_v}
+FROM ubuntu:${ubuntu_version}
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 SHELL ["/bin/bash", "-c"]
 
-# RUN apt update && apt install -y \
-#     git \
-#     curl \
-#     && apt --purge remove nvidia* \
-#     cuda* \
-#     cudnn* \
-#     libnvidia* \
-#     libcuda* \
-#     libcudnn* 
+RUN apt update && apt install -y \
+    wget \
+    git \
+    curl \
+    build-essential \
+    libbz2-dev libdb-dev \
+    libreadline-dev \
+    libffi-dev \
+    libgdbm-dev \
+    liblzma-dev \
+    libncursesw5-dev \
+    libsqlite3-dev \
+    libssl-dev \
+    zlib1g-dev \
+    uuid-dev \
+    tk-dev
 
-# install cuda-toolkit
-RUN wget https://developer.download.nvidia.com/compute/cuda/11.7.1/local_installers/cuda-repo-wsl-ubuntu-11-7-local_11.7.1-1_amd64.deb \
-    && dpkg -i cuda-repo-wsl-ubuntu-11-7-local_11.7.1-1_amd64.deb
-RUN cp /var/cuda-repo-wsl-ubuntu-11-7-local/cuda-*-keyring.gpg /usr/share/keyrings/
-RUN wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin
-RUN mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
+# Install the key
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb \
+    && dpkg -i cuda-keyring_1.0-1_all.deb
 
-# RUn apt install -y \
-#     cuda-drivers \
-#     cuda \
-#     && autoremove \
-#     && apt autoclean
-#     && rm -rf /var/lib/apt/lists
+RUN apt update && apt install -y \
+    cuda-drivers \
+    cuda \
+    && rm -rf /var/lib/apt/lists
+
+RUN wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tar.xz \
+    && tar -xJf Python-3.10.0.tar.xz \
+    && cd Python-3.10.0 \
+    && ./configure --enable-optimizations \
+    && make -j 8 \
+    && make install
 
 ENV PATH /etc/poetry/bin:$PATH
 
